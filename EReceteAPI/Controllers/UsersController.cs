@@ -8,12 +8,14 @@ using Microsoft.EntityFrameworkCore;
 using EReceteAPI.Database;
 using EReceteAPI.Database.Entities;
 using Data.Database;
+using EReceteAPI.Database.Repository;
 
 namespace EReceteAPI.Controllers
 {
     [Route("api/[controller]")]
     public class UsersController : Controller
     {
+        private readonly RepoContext repoContext = new RepoContext();
         private readonly EReceteDBContext _context;
         private readonly IUserRepository _repository;
 
@@ -26,7 +28,8 @@ namespace EReceteAPI.Controllers
         // GET: Users
         public async Task<IActionResult> Index()
         {
-            return View(await _repository.GetAllByAsync());
+            return View(await repoContext.UserRepository.GetAllByAsync());
+            //return View(await _repository.GetAllByAsync());
             //return View(await _context.Users.ToListAsync());
         }
 

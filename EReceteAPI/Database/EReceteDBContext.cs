@@ -16,8 +16,8 @@ namespace EReceteAPI.Database
         {
         }
 
+        public virtual DbSet<Recete> Recete { get; set; }
         public virtual DbSet<Ilac> Ilac { get; set; }
-        
         public virtual DbSet<Users> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
