@@ -4,18 +4,20 @@ using EReceteAPI.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace EReceteAPI.Migrations
+namespace EReceteAPI.Database.Migrations
 {
     [DbContext(typeof(EReceteDBContext))]
-    partial class EReceteDBContextModelSnapshot : ModelSnapshot
+    [Migration("20190203215952_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.1-servicing-10028")
+                .HasAnnotation("ProductVersion", "2.2.0-rtm-35687")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -23,29 +25,37 @@ namespace EReceteAPI.Migrations
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("ID")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Ad");
+                    b.Property<string>("Ad")
+                        .HasMaxLength(255);
 
-                    b.Property<string>("AdArama");
+                    b.Property<string>("AdArama")
+                        .HasMaxLength(500);
 
-                    b.Property<string>("AtcAd");
+                    b.Property<string>("AtcAd")
+                        .HasMaxLength(255);
 
-                    b.Property<string>("AtcKod");
+                    b.Property<string>("AtcKod")
+                        .HasMaxLength(255);
 
                     b.Property<long>("Barkod");
 
                     b.Property<long?>("CreatedBy");
 
-                    b.Property<DateTime?>("CreatedDate");
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime");
 
                     b.Property<int?>("CreatedKurumKodu");
 
                     b.Property<long?>("CreatedRoleId");
 
-                    b.Property<string>("FirmaAd");
+                    b.Property<string>("FirmaAd")
+                        .HasMaxLength(255);
 
-                    b.Property<decimal?>("Fiyat");
+                    b.Property<decimal?>("Fiyat")
+                        .HasColumnType("decimal(18, 2)");
 
                     b.Property<int?>("GeriOdeme");
 
@@ -59,25 +69,29 @@ namespace EReceteAPI.Migrations
 
                     b.Property<int?>("ReceteTuru");
 
-                    b.Property<string>("RowGuid");
+                    b.Property<string>("RowGuid")
+                        .HasMaxLength(36);
 
-                    b.Property<string>("SessionId");
+                    b.Property<string>("SessionId")
+                        .HasMaxLength(36);
 
                     b.Property<long?>("UpdatedBy");
 
-                    b.Property<DateTime?>("UpdatedDate");
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime");
 
                     b.Property<int?>("UpdatedKurumKodu");
 
                     b.Property<long?>("UpdatedRoleId");
 
-                    b.Property<string>("UpdatedSessionId");
+                    b.Property<string>("UpdatedSessionId")
+                        .HasMaxLength(36);
 
                     b.HasKey("Id");
 
                     b.HasIndex("ReceteID");
 
-                    b.ToTable("Ilac");
+                    b.ToTable("Ilac","Skrs");
                 });
 
             modelBuilder.Entity("EReceteAPI.Database.Entities.Recete", b =>
@@ -120,35 +134,50 @@ namespace EReceteAPI.Migrations
                 {
                     b.Property<long>("ID")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("ID")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Ad");
+                    b.Property<string>("Ad")
+                        .HasMaxLength(255);
 
-                    b.Property<string>("CepTelefonu");
+                    b.Property<string>("CepTelefonu")
+                        .HasMaxLength(255);
 
-                    b.Property<string>("DiplomaNo");
+                    b.Property<string>("DiplomaNo")
+                        .HasMaxLength(255);
 
-                    b.Property<string>("Email");
+                    b.Property<string>("Email")
+                        .HasMaxLength(255);
 
-                    b.Property<string>("EsaglikPassword");
+                    b.Property<string>("EsaglikPassword")
+                        .HasColumnName("ESaglikPassword")
+                        .HasMaxLength(255);
 
-                    b.Property<string>("MernisSifresi");
+                    b.Property<string>("MernisSifresi")
+                        .HasMaxLength(255);
 
-                    b.Property<string>("Password");
+                    b.Property<string>("Password")
+                        .HasMaxLength(255);
 
-                    b.Property<string>("PhoneNumber");
+                    b.Property<string>("PhoneNumber")
+                        .HasMaxLength(255);
 
-                    b.Property<string>("Sgksifresi");
+                    b.Property<string>("Sgksifresi")
+                        .HasColumnName("SGKSifresi")
+                        .HasMaxLength(255);
 
-                    b.Property<string>("Soyad");
+                    b.Property<string>("Soyad")
+                        .HasMaxLength(255);
 
-                    b.Property<long>("TckimlikNo");
+                    b.Property<long>("TckimlikNo")
+                        .HasColumnName("TCKimlikNo");
 
-                    b.Property<string>("UserName");
+                    b.Property<string>("UserName")
+                        .HasMaxLength(255);
 
                     b.HasKey("ID");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users","Yetkilendirme");
                 });
 
             modelBuilder.Entity("EReceteAPI.Database.Entities.Ilac", b =>

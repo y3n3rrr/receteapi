@@ -28,10 +28,6 @@ namespace EReceteAPI.Database
                 //optionsBuilder.UseSqlServer("Data Source=.;Database=ERecete;Persist Security Info=True;User ID=sa;Password=!123qwer;");
             }
         }
-        //protected override void OnModelCreating(ModelBuilder builder)
-        //{
-        //    base.OnModelCreating(builder);
-        //}
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("ProductVersion", "2.2.0-rtm-35687");

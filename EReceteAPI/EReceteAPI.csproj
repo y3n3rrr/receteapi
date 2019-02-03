@@ -6,13 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Database\Migrationsasd\**" />
-    <Content Remove="Database\Migrationsasd\**" />
-    <EmbeddedResource Remove="Database\Migrationsasd\**" />
-    <None Remove="Database\Migrationsasd\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.0" />
@@ -21,7 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Database\Migrations\" />
     <Folder Include="Infrastructure\" />
   </ItemGroup>
 
