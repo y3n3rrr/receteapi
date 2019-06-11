@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EReceteAPI.Database.Repository
+namespace EReceteAPI.Database
 {
     public class RepoContext : UnitOfWork
     {

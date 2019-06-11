@@ -6,9 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EReceteAPI.Database;
-using EReceteAPI.Database.Entities;
-using Data.Database;
-using EReceteAPI.Database.Repository;
 
 namespace EReceteAPI.Controllers
 {

@@ -1,4 +1,4 @@
-﻿using EReceteAPI.Database.Entities;
+﻿using EReceteAPI.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;

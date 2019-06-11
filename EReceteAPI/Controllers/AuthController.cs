@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using EReceteAPI.Infrastructure.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 
@@ -32,19 +33,21 @@ namespace EreceteApiCore.Controllers
             ///check this creadentials against DB
             if (false)//userCredentials[0] != "test" && userCredentials[1] == "test" 
             {
-                throw new UnauthorizedAccessException("Kullanici bilgileri bulunamadi");
+                return Unauthorized("Kullanici bilgileri bulunamadi");
+                //return NotFound(new NotFoundError("The user was not found"));
+                
             }
-            var claim = new[] { new Claim(ClaimTypes.Name, userCredentials[0])};
-            var keySing = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("my_scret_key_fromConfig"));
+            var claim = new[] { new Claim("Username", userCredentials[0])};
+            var keySing = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("my_scret_key_from_ConfigFile"));
             var signedKey = new SigningCredentials(keySing, SecurityAlgorithms.HmacSha256Signature);
             var token = new JwtSecurityToken(
                 issuer: "mysite.com",
                 audience: "mysite.com",
                 expires: DateTime.Now.AddMinutes(1),
                 claims: claim,
-                signingCredentials: signedKey
-                );
+                signingCredentials: signedKey);
             var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
+
             return Ok(tokenString);
 
         }

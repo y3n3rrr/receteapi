@@ -1,5 +1,4 @@
 ﻿using EReceteAPI.Database;
-using EReceteAPI.Database.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -25,7 +24,7 @@ namespace Data.Database
 
         public async Task<List<Users>> GetAllByAsync()
         {
-            return await GetAll().ToListAsync();
+            return await GetAll().Take(10).ToListAsync();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Data.Database;
@@ -30,19 +31,21 @@ namespace EReceteAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<EReceteDBContext>(o => {
+            services.AddDbContext<EReceteDBContext>(o =>
+            {
                 o.UseSqlServer(Configuration.GetConnectionString("EReceteDbConnection"));
             });
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options => {
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
+                    NameClaimType = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name",
                     ValidateIssuer = true,
                     ValidateAudience = true,
                     ValidateIssuerSigningKey = true,
                     ValidIssuer = "mysite.com",
                     ValidAudience = "mysite.com",
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("my_scret_key_fromConfig"))
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("my_scret_key_from_ConfigFile"))
                 };
             });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
